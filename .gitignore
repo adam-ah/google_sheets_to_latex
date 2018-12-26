@@ -3,6 +3,9 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+gsheets_input.png
+latex_visual.png
+
 # User-specific files
 *.suo
 *.user
