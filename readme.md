@@ -3,6 +3,7 @@
 Small script to convert the selected area from a Google Sheets document to a LaTeX table.
 
 What's supported:
+
 - Merged columns
 - Merged rows
 - Multi-row cells (newline within a cell)
@@ -10,10 +11,10 @@ What's supported:
 
 # Installation
 
-You can install it on the Sheets you are using on, it's not a global add-on, like the ones in the store.
+You can install it on the Sheets you are using, it's not a global add-on like the ones in the store:
 
-- Go to tools, Script Editor.
-- Paste the content of the .js file into the editor.
+- Go to tools, Script Editor
+- Paste the content of the .js file into the editor
 - Save, close the editor
 - Select the range you want to convert
 - Click Add-ons / LaTeX Table / Selection to LaTeX table
