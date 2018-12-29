@@ -5,7 +5,8 @@ function onOpen() {
 }
 
 function latexify() {
-  var range = SpreadsheetApp.getActiveRange();
+  var sheet = SpreadsheetApp.getActiveSheet();
+  var range = sheet.getActiveRange();
   var numRows = range.getNumRows();
   var numCols = range.getNumColumns();
   var values = range.getDisplayValues();
@@ -22,10 +23,13 @@ function latexify() {
   latex += "\\hline\n";
 
   var skips = getSkips(range);
+  var nohlinefor = 0;
 
   for (var row = 0; row < numRows; row++) {
     var rowValues = values[row];
     var hline = "\\hline";
+    nohlinefor--;
+
     for (var col = 0; col < numCols; col++) {
       var cell = rowValues[col];
       if (!cell) {
@@ -46,15 +50,17 @@ function latexify() {
 
       var skipkey = row + "-" + col;
       var rowskip = skips.rowskips[skipkey];
-      var colskip = skips.colskips[skipkey];
+
       if (rowskip) {
         cell = "\\multirow{" + rowskip + "}{*}{" + cell + "}";
-
-        if (col == 0) {
-          hline = "\\cline{2-" + numCols + "}";
-        }
+        nohlinefor = rowskip;
       }
 
+      if (nohlinefor > 1 && col < 2) {
+        hline = "\\cline{2-" + numCols + "}";
+      }
+
+      var colskip = skips.colskips[skipkey];
       if (colskip) {
         for (var i = col + 1; i < col + colskip; i++) {
           rowValues[i] = null;
