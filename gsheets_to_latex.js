@@ -36,9 +36,9 @@ function latexify() {
         continue;
       }
       cell = cell.replace(/[\u2018\u2019]/g, "'");
-      cell = cell.replace("\\", "\\textbackslash");
+      cell = cell.replace("\\\\", "\\textbackslash");
       cell = cell.replace("~", "\\textasciitilde");
-      cell = cell.replace(/([&%$#_{}])/g, "\\$1");
+      cell = cell.replace(/([&%$#_])/g, "\\$1");
 
       splitCell = String(cell).split(/\n/);
       if (splitCell.length == 1) {
